@@ -1,0 +1,22 @@
+<div class="select-financial-year-component">
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Select the Financial Year</mat-label>
+    <mat-select
+      [formControl]="formControl"
+      [disableControl]="disabled"
+      panelClass="dropdown-panel-spacing"
+    >
+    @for (option of options; track option) {
+      <mat-option [value]="option">{{ option }}</mat-option>
+    }
+    </mat-select>
+    @if (hint) {
+      } @for (errorKey of errorKeys(formControl); track errorKey) {
+      <mat-error>
+        @if (formControl.touched && formControl.hasError(errorKey)) {
+          {{ errorMessage(formControl, errorKey) }}
+        }
+      </mat-error>
+      }
+  </mat-form-field>
+</div>

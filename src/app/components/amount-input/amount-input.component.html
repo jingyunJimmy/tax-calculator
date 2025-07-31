@@ -1,0 +1,33 @@
+<div class="amount-input" [formGroup]="formGroup">
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label
+      >{{ title }}</mat-label
+    >
+    <span matPrefix class="mat-form-field-prefix" style="margin-left: 16px">
+      <div class="mdi mdi-currency-usd"></div>
+    </span>
+
+    <input
+      matInput
+      currencyMask
+      [disableControl]="disabled"
+      maxlength="11"
+      [options]="options"
+      placeholder="{{ placeholder ? placeholder : '0.00' }}"
+      [readonly]="readonly"
+      type="text"
+      [formControl]="formControlValue"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+    />
+
+    @if (hint) {
+    } @for (errorKey of errorKeys(formControlValue); track errorKey) {
+    <mat-error>
+      @if (formControlValue.touched && formControlValue.hasError(errorKey)) {
+        {{ errorMessage(formControlValue, errorKey) }}
+      }
+    </mat-error>
+    }
+  </mat-form-field>
+</div>

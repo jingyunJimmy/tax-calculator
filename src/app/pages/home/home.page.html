@@ -1,0 +1,50 @@
+<div class="home-page">
+  <div class="form-container">
+    <div class="row align-items-center mt-4">
+      <div class="col text-center">
+        <h2>Tax Calculator</h2>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-12">
+        <app-select-financial-year
+          [title]="'Select the financial year'"
+          [formControl]="formControlFinancialYear"
+        ></app-select-financial-year>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-12">
+        <app-amount-input
+          [title]="'Enter your taxable income of the year'"
+          [formControl]="formControlAmount"
+        ></app-amount-input>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-12 d-flex flex-column flex-sm-row justify-content-sm-end">
+        <button mat-flat-button color="primary" class="width-100" [disabled]="formGroup.invalid" 
+          (click)="onCalculate()">
+          Calculate
+        </button>
+      </div>
+    </div>
+
+    @if (showResult) {
+      <div class="row mt-4">
+        <div class="col-12">
+          <h4>The estimated tax on your taxable income is:</h4>
+        </div>  
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h2>{{tax | currency}}</h2>
+        </div>  
+      </div>
+    }
+  </div>
+</div>
